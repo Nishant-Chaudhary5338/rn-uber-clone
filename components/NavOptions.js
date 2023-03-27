@@ -1,6 +1,7 @@
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 import { ArrowRightOutlined } from '@ant-design/icons'
+import { useNavigation } from '@react-navigation/native'
 
 
 
@@ -18,6 +19,7 @@ const data = [
     },
 ]
 const NavOptions = () => {
+  const navigation = useNavigation();
   return (
     <View>
       <FlatList 
@@ -25,7 +27,9 @@ const NavOptions = () => {
       data={data}
       key = {(item)=> item.id}
       renderItem={({item}) => (
-        <TouchableOpacity style = {{backgroundColor: "gray", margin: 10, padding: 10}}>
+        <TouchableOpacity 
+         onPress={()=> navigation.navigate(item.screen)}
+        style = {{backgroundColor: "gray", margin: 10, padding: 10}}>
             <View>
             
             <Image style = {{height : 120, width : 120, resizeMode : "contain"}} source = {{uri: item.image}} />
